@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPEECH TO TEXT</title>
+  <style>
+     .container{
+         background-color: black;
+         color: white;
+         width: 500px;
+         height: 500px;
+         text-align: center;
+         margin: auto;
+         display:none;
+     }
+     .mic{
+      width: 100px;
+      height: 100px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 50%;
+     }
+     
+     .pic{
+      display: inline;
+      margin: 0 auto;
+      height: 100%;
+      width: auto;
+      align-content: center;
+     }
+
+     button{
+      background-color: #36454F;
+        color: white;
+        text-align: center;
+        padding: 14px 25px;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 25px;
+     }
+
+     p{
+      font-weight: bold;   
+      color: white;
+      font-family: Arial,Helvetica;
+      position: absolute;
+      top: 55%;
+      right: 48%;
+     }
+
+     .pothan{
+      position: absolute;
+      top: 67%;
+      right: 46%;
+      transform translate(-50, -50); 
+     }
+
+     .close{
+         margin-left: 450px;
+     }
+
+  </style>
+</head>
+<body>
+
+  <div class="pothan">
+ <center><button class="btn" onclick="document.getElementById('container').style.display='block'">START</button></center>
+</div>
+  
+
+  <div class="container" id="container">
+      <h1 onclick="document.getElementById('container').style.display='none'" class="close"><span> &#x2715;</span> </h1>
+      <h1>CLICK ON THE MIC BELOW AND SPEAK...!</h1>
+      <div class="pic">
+      <img class="mic" width="300px" heigth="400px" onclick="start1()" src="pic.png"/>  
+      <p id="output"></p>
+    </div>
+      <h3 id="res"> </h3>
+  </div>
+  
+  <script>
+      const reg = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const speech = new reg();
+     // console.log(speech)
+     recognition.lang = ''
+     function start1(){
+         speech.start()
+     speech.onresult= function (e){
+
+        document.getElementById('output').innerText= "Your said :  "+e.results[e.resultIndex][0].transcript;
+     }
+     speech.onend=function (){
+          document.getElementById("res").innerText="If you want to talk again click the mic icon";
+     }
+    }
+  </script>
+
+</body>
+</html>
